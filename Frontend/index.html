@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ML-Based Network IDS Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================================================
+     HEADER
+     ================================================ -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">🛡️</div>
+    <div class="logo-text">
+      <h1>Network Intrusion Detection System</h1>
+      <span>ML-Powered &nbsp;|&nbsp; Random Forest Classifier &nbsp;|&nbsp; Academic Demo</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      MONITORING ACTIVE
+    </div>
+    <div class="clock" id="clock">--:--:--</div>
+  </div>
+</header>
+
+<!-- ================================================
+     MAIN CONTENT
+     ================================================ -->
+<main>
+
+  <!-- SUMMARY CARDS -->
+  <div class="section-label">Detection Overview</div>
+  <div class="cards-grid">
+    <div class="card blue">
+      <div class="card-header">
+        <span class="card-label">Total Traffic Analyzed</span>
+        <div class="card-icon">📡</div>
+      </div>
+      <div class="card-value" id="c-total">0</div>
+      <div class="card-sub">Network packets sampled</div>
+    </div>
+    <div class="card red">
+      <div class="card-header">
+        <span class="card-label">Attacks Detected</span>
+        <div class="card-icon">⚠️</div>
+      </div>
+      <div class="card-value" id="c-attacks">0</div>
+      <div class="card-sub">Malicious events flagged</div>
+    </div>
+    <div class="card green">
+      <div class="card-header">
+        <span class="card-label">Normal Traffic</span>
+        <div class="card-icon">✅</div>
+      </div>
+      <div class="card-value" id="c-normal">0</div>
+      <div class="card-sub">Benign packets identified</div>
+    </div>
+    <div class="card purple">
+      <div class="card-header">
+        <span class="card-label">Model Accuracy</span>
+        <div class="card-icon">🎯</div>
+      </div>
+      <div class="card-value">97.4<span style="font-size:18px">%</span></div>
+      <div class="card-sub">Random Forest on NSL-KDD</div>
+    </div>
+  </div>
+
+  <!-- MIDDLE ROW: CHART + ALERTS -->
+  <div class="section-label">Traffic Analysis</div>
+  <div class="mid-row">
+
+    <!-- BAR CHART PANEL -->
+    <div class="panel">
+      <div class="panel-title"><span>📊</span> Traffic Distribution</div>
+      <div class="chart-wrap">
+
+        <!-- Normal vs Attack bars -->
+        <div class="bar-group">
+          <label>
+            <span>Normal Traffic</span>
+            <span id="lbl-normal">0 packets</span>
+          </label>
+          <div class="bar-track">
+            <div class="bar-fill normal" id="bar-normal">—</div>
+          </div>
+        </div>
+        <div class="bar-group">
+          <label>
+            <span>Attack Traffic</span>
+            <span id="lbl-attack">0 packets</span>
+          </label>
+          <div class="bar-track">
+            <div class="bar-fill attack" id="bar-attack">—</div>
+          </div>
+        </div>
+
+        <!-- Protocol breakdown -->
+        <div style="margin-top:10px; border-top:1px solid var(--border); padding-top:14px;">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Protocol Breakdown</div>
+          <div class="bar-group" id="proto-bars">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <!-- Mini SVG donut -->
+        <div class="donut-wrap">
+          <svg width="90" height="90" viewBox="0 0 90 90" id="donut-svg"></svg>
+          <div class="legend" id="donut-legend"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ALERTS PANEL -->
+    <div class="panel">
+      <div class="panel-title"><span>🚨</span> Intrusion Alerts</div>
+      <div class="alert-list" id="alert-list">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIMULATE DETECTION -->
+  <div class="section-label">ML Simulation Demo</div>
+  <div class="sim-section">
+    <div class="sim-row">
+      <button class="btn-sim" onclick="simulateDetection()">
+        ⚡ Simulate Detection
+      </button>
+      <button class="btn-reset" onclick="resetSimulation()">
+        ↺ Reset
+      </button>
+    </div>
+    <div id="sim-result"></div>
+  </div>
+
+  <!-- TRAFFIC TABLE -->
+  <div class="section-label">Live Traffic Records</div>
+  <div class="table-panel">
+    <div class="table-header">
+      <div class="table-title">
+        📋 Network Packet Log
+        <span class="table-badge" id="tbl-badge">0 records</span>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono);">
+        Predictions by Random Forest Model
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Source IP</th>
+            <th>Destination IP</th>
+            <th>Protocol</th>
+            <th>Port</th>
+            <th>Packet Size</th>
+            <th>Prediction</th>
+            <th>Severity</th>
+          </tr>
+        </thead>
+        <tbody id="traffic-tbody">
+          <!-- Injected by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  🛡️ ML-Based Network IDS &nbsp;|&nbsp; <span>Academic Project Demo</span> &nbsp;|&nbsp;
+  Built with HTML · CSS · JavaScript &nbsp;|&nbsp;
+  Real-time ML integration is <span>future scope</span>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
