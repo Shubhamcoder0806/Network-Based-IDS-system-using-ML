@@ -164,10 +164,6 @@ text
 | Name | Role |
 |------|------|
 | Shubham Mishra | Developer |
-| Kanha Mishra | Developer |
-| Pranav Goyal | Developer |
-| Aman Adarshi | Developer |
-| Priyansh Bhatt | Developer |
 
 ## 🎓 Academic Project
 
